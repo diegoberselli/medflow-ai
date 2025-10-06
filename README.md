@@ -143,5 +143,3 @@ medical-automation/
 - **Checklist**: `docs/demo-checklist.md`
 - **Documentação**: `docs/DOCUMENTACAO_COMPLETA.md`
 
-## 🎬 Demonstração
-Ver `docs/GUIA_DEMONSTRACAO.md` para roteiro completo de apresentação.
