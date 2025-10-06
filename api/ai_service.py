@@ -2,8 +2,6 @@ import openai
 import json
 
 def process_with_ai(message, context=None):
-    """Process message with AI to extract intent and parameters"""
-    
     system_prompt = """
     You are a medical assistant that helps patients with:
     1. Check available schedules
@@ -42,7 +40,6 @@ def process_with_ai(message, context=None):
         }
 
 def generate_response(intent, data=None):
-    """Generate response based on intent and data"""
     
     responses = {
         "schedule": f"Horários disponíveis encontrados: {len(data) if data else 0}",

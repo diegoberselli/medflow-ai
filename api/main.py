@@ -53,7 +53,6 @@ def create_appointment():
 
         db.commit()
         
-        # Enviar email de confirmação
         patient = db.query(Patient).filter(Patient.id == data['patient_id']).first()
         doctor = db.query(Doctor).filter(Doctor.id == data['doctor_id']).first()
         
@@ -74,7 +73,6 @@ def cancel_appointment(appointment_id):
         if not appointment:
             return jsonify({"error": "Consulta não encontrada"}), 404
 
-        # Liberar horário
         schedule = db.query(Schedule).filter(
             Schedule.doctor_id == appointment.doctor_id,
             Schedule.datetime == appointment.datetime
@@ -82,7 +80,6 @@ def cancel_appointment(appointment_id):
         if schedule:
             schedule.available = True
 
-        # Enviar email de cancelamento
         patient = db.query(Patient).filter(Patient.id == appointment.patient_id).first()
         doctor = db.query(Doctor).filter(Doctor.id == appointment.doctor_id).first()
         
@@ -117,7 +114,6 @@ def chat_webhook():
     data = request.json
     message = data.get('message', '')
     
-    # Processar intenção
     if 'horário' in message.lower() or 'agenda' in message.lower():
         return jsonify({"intent": "schedule", "response": "Consultando horários disponíveis..."})
     elif 'agendar' in message.lower():
@@ -136,15 +132,12 @@ def process_audio():
     data = request.json
     audio_data = data.get('audio_base64')
     
-    # Converter áudio para texto
     stt_result = speech_to_text(audio_data)
     if not stt_result['success']:
         return jsonify({"error": "Erro ao processar áudio"}), 400
     
-    # Processar texto
     text = stt_result['text']
     
-    # Simular processamento de chat
     if 'horário' in text.lower():
         response_text = "Consultando horários disponíveis..."
         intent = "schedule"
@@ -155,7 +148,6 @@ def process_audio():
         response_text = "Como posso ajudá-lo?"
         intent = "general"
     
-    # Converter resposta para áudio
     tts_result = text_to_speech(response_text)
     
     return jsonify({
