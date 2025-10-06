@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Medical API",
+    "description": "API para automação médica com N8N",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Doctors",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/doctors",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["doctors"]
+        }
+      }
+    },
+    {
+      "name": "Get Doctor Schedule",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/doctors/1/schedule",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["doctors", "1", "schedule"]
+        }
+      }
+    },
+    {
+      "name": "Create Appointment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"patient_id\": 1,\n  \"doctor_id\": 1,\n  \"datetime\": \"2024-10-07T09:00:00\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/appointments",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["appointments"]
+        }
+      }
+    },
+    {
+      "name": "Cancel Appointment",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/appointments/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["appointments", "1"]
+        }
+      }
+    },
+    {
+      "name": "Get Payment Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/payment-info",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["payment-info"]
+        }
+      }
+    }
+  ]
+}
